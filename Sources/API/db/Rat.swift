@@ -44,6 +44,7 @@ final class Rats: Table {
     let createdAt = Column("createdAt")
     let updatedAt = Column("updatedAt")
     let deletedAt = Column("deletedAt")
+    let userId = Column("userId")
 }
 
 struct Rat {
@@ -55,6 +56,7 @@ struct Rat {
     let createdAt: Date
     let updatedAt: Date
     let deletedAt: Date?
+    let userId: UUID?
     
 }
 
@@ -72,7 +74,8 @@ extension Rat: DatabaseModel {
         }
         
         let data = (fields["data"] as? Data)?.jsonDataField
-        self.init(id: id, name: name, data: data, platform: platform, joined: joined, createdAt: createdAt, updatedAt: updatedAt, deletedAt: nil)
+        let userId = UUID(uuidString: fields["userId"] as? String)
+        self.init(id: id, name: name, data: data, platform: platform, joined: joined, createdAt: createdAt, updatedAt: updatedAt, deletedAt: nil, userId: userId)
     }
 }
 

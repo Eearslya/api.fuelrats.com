@@ -66,6 +66,15 @@ extension Data {
     }
 }
 
+extension UUID {
+    init?(uuidString: String?) {
+        guard let uuidString = uuidString else {
+            return nil
+        }
+        self.init(uuidString: uuidString)
+    }
+}
+
 
 public protocol DatabaseModel {
     init?(fields: [String: Any])

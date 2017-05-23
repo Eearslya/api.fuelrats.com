@@ -36,8 +36,12 @@ import SwiftKueryPostgreSQL
 
 print("API Starting")
 
-let users = Users()
-let rats = Rats()
+var users = Users()
+users = users.primaryKey(users.id)
+
+var rats = Rats()
+rats = rats.primaryKey(rats.id)
+rats = rats.foreignKey(rats.userId, references: users.id)
 
 print("Making Connection")
 let connection = PostgreSQLConnection(host: "127.0.0.1", port: 5432, options: [
